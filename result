@@ -1,0 +1,50 @@
+> model_nn <- nnet(formula = y~., data = dt,size = 3)
+# weights:  694
+initial  value 3514.694510 
+iter  10 value 2486.128197
+iter  20 value 2483.866884
+iter  30 value 2483.516304
+iter  40 value 2483.405188
+iter  50 value 2483.395935
+final  value 2483.395887 
+converged
+> pre_nn <- predict(model_nn,newdata = dt)
+> table(pre_nn)
+pre_nn
+0.675272231355504 0.675272469661374 0.686898812429791 
+              682                 1                39 
+0.707333076158765 0.707334169286268 0.707334222245051 
+                1                 1              3337 
+0.718291751834596 
+               17 
+               
+               > summary(glm_model)
+
+Call:
+glm(formula = y ~ ., family = binomial(link = logit), data = training_data, 
+    control = list(maxit = 100))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-2.107e-08  -2.107e-08   2.107e-08   2.107e-08   2.107e-08  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept) -3.057e+01  2.883e+06   0.000        1
+pre_nn       4.323e-06  4.104e+06   0.000        1
+pre_rf1      6.113e+01  1.112e+05   0.001        1
+pre_svm1    -1.356e-08  3.092e+05   0.000        1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3.4899e+03  on 2853  degrees of freedom
+Residual deviance: 1.2674e-12  on 2850  degrees of freedom
+AIC: 8
+
+Number of Fisher Scoring iterations: 29
+
+> table(pre,testing_data$y)
+   
+pre   0   1
+  0 358   0
+  1   0 866
