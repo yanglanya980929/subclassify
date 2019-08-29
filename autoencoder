@@ -10,44 +10,26 @@ library(nnet)
 library(keras)
 
 df_DPQ =  foreign::read.xport("DPQ_I(3).XPT")
-sprintf("DPQ数据集样本数为：%d 列数为: %d" ,dim(df_DPQ)[1],dim(df_DPQ)[2])
-head(df_DPQ) 
 
 df_DEMO = foreign::read.xport("DEMO_I(1).XPT")
-sprintf("DEMO数据集样本数为：%d 列数为: %d" ,dim(df_DEMO)[1],dim(df_DEMO)[2])
-head(df_DEMO)
 
 df_DR1IFF = foreign::read.xport("DR1IFF_I(2).XPT")
-sprintf("DR1IFF数据集样本数为：%d 列数为: %d" ,dim(df_DR1IFF)[1],dim(df_DR1IFF)[2])
-head(df_DR1IFF)
+
 df_DR1IFF<-df_DR1IFF[,-c(2:18)] 
 
 df_DR1IFF = sapply(df_DR1IFF,function(x) tapply(x,df_DR1IFF$SEQN,function(x) mean(x,na.rm = T)))
 
-
-df_DR1TOT = foreign::read.xport("DR1TOT_I(2).XPT")
-sprintf("DR1TOT数据集样本数为：%d 列数为: %d" ,dim(df_DR1TOT)[1],dim(df_DR1TOT)[2])
-head(df_DR1TOT)
-
+df_DR1TOT = foreign::read.xport("DR1TOT_I(2).XPT"）
 
 df_DR2IFF = foreign::read.xport("DR2IFF_I(2).XPT")
-sprintf("DR2IFF数据集样本数为：%d 列数为: %d" ,dim(df_DR2IFF)[1],dim(df_DR2IFF)[2])
-head(df_DR2IFF)
 
 df_DR2IFF<-df_DR2IFF[,-c(2:18)] 
 
 df_DR2IFF = sapply(df_DR2IFF,function(x) tapply(x,df_DR2IFF$SEQN,function(x) mean(x,na.rm = T)))
 
-
-
 df_DR2TOT = foreign::read.xport("DR2TOT_I(2).XPT")
-sprintf("DR2TOT数据集样本数为：%d 列数为: %d" ,dim(df_DR2TOT)[1],dim(df_DR2TOT)[2])
-head(df_DR2TOT)
 
 df_DRXFCD = foreign::read.xport("DRXFCD_I(2).XPT")
-sprintf("DRXFCD数据集样本数为：%d 列数为: %d" ,dim(df_DRXFCD)[1],dim(df_DRXFCD)[2])
-head(df_DRXFCD)
-
 
 
 duplicated(df_DPQ$SEQN) %>% table() 
